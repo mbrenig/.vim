@@ -44,7 +44,7 @@ set t_fs=             " For iTerm set tab title
 set title               " For iTerm set tab title
 set rnu                 " Relative line numbering
 set number              " And show the line number of current line
-set ruler               " Cursor location in bottom bar
+set laststatus=2        " Use the vim-airline bar all the time.
 
 " Searching ==================================================================
 set ignorecase          " Ignore case when searching.
@@ -101,6 +101,7 @@ set undolevels=1000
 set history=1000
 "set visualbell
 set noerrorbells
+set belloff=all  " Stops annoying bells in gvim on windows
 
 " Keys i keep accidentally hitting!
 nmap <F1> <nop>
