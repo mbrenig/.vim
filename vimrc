@@ -1,8 +1,13 @@
-" MBJ's vimrc file.
+" This file is UTF-8 =========================================================
+scriptencoding utf-8
+set encoding=utf-8
 
 " Tabs =======================================================================
 " default indentation: 4 spaces
 set ts=4 sts=4 sw=4 expandtab
+
+" Read .jy files as python.
+au BufNewFile,BufRead *.jy set filetype=python
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -31,6 +36,7 @@ let mapleader=","
 
 syntax enable           " Switch on syntax highlighting.
 colorscheme solarized
+call togglebg#map("<F5>") " F5 wil toggle background. Useful for presenting.
 
 " Layout =====================================================================
 set t_ts=]1;          " For iTerm set tab title
@@ -54,6 +60,11 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Monaco true type: http://www.gringod.com/wp-upload/MONACO.TTF
+set gfn=Monaco:h11
+set lines=100
+set columns=100
+
 " Syntastic ==================================================================
 " Available from here: https://github.com/vim-syntastic/syntastic
 set statusline+=%#warningmsg#
@@ -64,7 +75,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " Use my local pylintrc file
-let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc' 
+let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
 " ============================================================================
 
 " Shortcuts for opening new files ============================================
@@ -88,16 +99,34 @@ set wildignore=*.swp,*.pyc
 set showmatch                   " Flash the closing bracket when writing ({[
 set undolevels=1000
 set history=1000
-set visualbell
+"set visualbell
 set noerrorbells
 
-nmap <silent> <leader>ec :e $MYVIMRC<CR>
+" Keys i keep accidentally hitting!
+nmap <F1> <nop>
+map <F1> <Esc>
+imap <F1> <Esc>
+nmap <F1> <Esc>
+
+" Edit config file
+nmap <silent> <leader>ec :tabe $MYVIMRC<CR>
 nmap <silent> <leader>sc :so $MYVIMRC<CR>
 
 " Toggle whitespace hints with ,l
 nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,space:·,eol:¬   " Textmate whitespace chars.
 
+" Windows copy paste.
+" CTRL-X is Cut
+vnoremap <C-x> "+x
+" CTRL-C is Copy
+vnoremap <C-c> "+y
+" SHIFT-Insert is Paste
+map <S-Insert>          "+gp
+
+" Chrome like tab control in Windows.
+map <C-PageUp>    :tabprevious<CR>
+map <C-PageDown>  :tabnext<CR>
 
 " Hard mode. Disallow arrow keys
 map <up> <nop>
