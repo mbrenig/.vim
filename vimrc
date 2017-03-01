@@ -35,8 +35,19 @@ filetype plugin indent on
 let mapleader=","
 
 syntax enable           " Switch on syntax highlighting.
-colorscheme solarized
 call togglebg#map("<F5>") " F5 wil toggle background. Useful for presenting.
+
+" Font and colors ============================================================
+if has('gui_running')
+    " Set dark Solarized.
+    set background=dark
+    colorscheme solarized
+
+    set guioptions=ctm
+    set guifont=DejaVu_Sans_Mono_for_Powerline:h11
+else
+    colorscheme default
+endif
 
 " Layout =====================================================================
 set t_ts=]1;          " For iTerm set tab title
@@ -45,6 +56,7 @@ set title               " For iTerm set tab title
 set rnu                 " Relative line numbering
 set number              " And show the line number of current line
 set laststatus=2        " Use the vim-airline bar all the time.
+let g:airline_powerline_fonts = 1 " Use default powerline font mappings
 
 " Searching ==================================================================
 set ignorecase          " Ignore case when searching.
@@ -61,7 +73,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " Monaco true type: http://www.gringod.com/wp-upload/MONACO.TTF
-set gfn=Monaco:h11
+" set gfn=Monaco:h11   " Disabled for powerline
 set lines=100
 set columns=100
 
