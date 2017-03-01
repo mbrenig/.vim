@@ -1,4 +1,2 @@
 " https://github.com/zolotov/.vim
-set guifont=Monaco:h14
-
 set antialias   " MacVim: smooth fonts.
